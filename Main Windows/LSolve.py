@@ -32,6 +32,7 @@ initGrid = np.loadtxt(fileName, dtype=float)#this reduces complexity of input ts
 rows = initGrid.shape[0]
 columns = initGrid.shape[1]
 
+#literally the only difference between the windows and linux version is right here. Windows command prompt needs the whole string wrapped in quotes
 commandString = ["\"\"",laplaceExecutable,"\""," \"",fileName,"\" ",str(rows)," ",str(columns),"\""]
 
 os.system(''.join(commandString))
