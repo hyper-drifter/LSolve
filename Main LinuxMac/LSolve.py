@@ -26,22 +26,6 @@ if not fileName.endswith('.tsv') and not fileName.endswith('.csv') and not fileN
     tkMessageBox.showinfo("LSolve", "Invalid file type chosen")
     exit()
 
-#cheeky way of allowing command line to handle files with spaces
-fileName = fileName.split()
-for i in range(len(fileName)):
-    fileName.insert(2*i, '\\ ')
-del fileName[0]
-fileName = ''.join(fileName)
-print(fileName)
-
-#same thing for laplace executable path
-laplaceExecutable = laplaceExecutable.split()
-for i in range(len(laplaceExecutable)):
-    laplaceExecutable.insert(2*i, '\\ ')
-del laplaceExecutable[0]
-laplaceExecutable = ''.join(laplaceExecutable)
-#I am well aware that this looks awkward but it works and it's a lot simpler than creating my own gui
-
 
 #changing working directory so that output is stored with input file
 os.chdir(directory)
@@ -49,7 +33,8 @@ initGrid = np.loadtxt(fileName, dtype=float)#this reduces complexity of input ts
 rows = initGrid.shape[0]
 columns = initGrid.shape[1]
 
-commandString = [laplaceExecutable," ",fileName," ",str(rows)," ",str(columns)]
+commandString = ["\"",laplaceExecutable,"\" \"",fileName,"\" ",str(rows)," ",str(columns)]
+print(''.join(commandString))
 os.system(''.join(commandString))
 
 outputDirMessage = ["Output saved in ", directory]
@@ -65,5 +50,4 @@ ax = fig.add_subplot(1,1,1, projection='3d')
 ax.plot_surface(xVals, yVals, solvedGrid)
 plt.ion()
 plt.show()
-#pyplot is annoying. LOL the plot will only stay open for like 2.5 hours
 plt.pause(10000)
