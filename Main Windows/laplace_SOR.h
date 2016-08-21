@@ -1,5 +1,6 @@
 /*
      Author: Taylor Grubbs
+     This version uses successive over-relaxation which reduces iteration numbers significantly
 */
 #include <stdio.h>
 #include <stdlib.h>
@@ -7,34 +8,12 @@
 #include <string.h>
 #include <math.h>
 
-int getRows(const char *fileName)
-{
-     FILE *gridFile = fopen(fileName, "r");
-     int rows;
-     fscanf(gridFile, " %i", &rows);
-     fclose(gridFile);
-     return(rows);
-}
-
-int getColumns(const char *fileName)
-{
-     FILE *gridFile = fopen(fileName, "r");
-     int columns;
-     fscanf(gridFile, " %i", &columns);
-     fclose(gridFile);
-     return(columns);
-}
-
 //Reads in array from tsv file and returns as a double array
-double ** gridRead(const char *fileName)
+double ** gridRead(const char *fileName, int rows, int columns)
 {
      FILE *gridFile = fopen(fileName, "r");
-     int rows,columns,i,j;
+     int i,j;
      double **grid;
-
-     //gets number of rows and column in first line of file
-     fscanf(gridFile, " %i", &rows);
-     fscanf(gridFile, " %i", &columns);
 
      //allocates memory for grid
      grid = (double **) malloc(rows*sizeof(double *));
@@ -59,6 +38,7 @@ relaxation method. Will incorporate dynamic over-relaxation
 */
 void laplaceSolve(double ** initPotGrid, int rows, int columns)
 {
+
      int i,j;
      int boundaryPoints[rows][columns]; //finds initial nonzero voltages (the electrodes)
      for(i = 0; i < rows; i++){
@@ -108,7 +88,7 @@ void laplaceSolve(double ** initPotGrid, int rows, int columns)
      printf("Solved in %i iterations.\n", iterNum); //prints number of iterations
 
      //writes new grid values to file
-     FILE *gridFile = fopen("output.tsv", "w");
+     FILE *gridFile = fopen("LSolve-output.tsv", "w");
      for(i = 0; i < rows; i++){
        for(j = 0; j < columns; j++){
          fprintf(gridFile, " %lf\t", newV[i][j]);
@@ -117,5 +97,5 @@ void laplaceSolve(double ** initPotGrid, int rows, int columns)
      }
      fclose(gridFile);
 
-     printf("File saved as \"output.tsv\"\n");
+     printf("File saved as \"LSolve-output.tsv\"\n");
 }
