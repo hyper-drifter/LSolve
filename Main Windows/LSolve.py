@@ -48,7 +48,4 @@ xVals,yVals = np.meshgrid(range(0,rows), range(0,columns))
 fig = plt.figure()
 ax = fig.add_subplot(1,1,1, projection='3d')
 ax.plot_surface(xVals, yVals, solvedGrid)
-plt.ion()
 plt.show()
-#pyplot is annoying. LOL the plot will only stay open for like 2.5 hours
-plt.pause(10000)
