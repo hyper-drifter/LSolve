@@ -41,7 +41,7 @@ outputDirMessage = ["Output saved in ", directory]
 tkMessageBox.showinfo("LSolve", ''.join(outputDirMessage))
 
 #plotting result
-solvedGrid = np.loadtxt('LSolve-output.tsv', dtype=float)
+solvedGrid = np.loadtxt('LSolve-V-output.tsv', dtype=float)
 
 xVals,yVals = np.meshgrid(range(0,rows), range(0,columns))
 
