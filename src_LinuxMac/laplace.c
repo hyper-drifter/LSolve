@@ -1,7 +1,7 @@
 /*
      Author: Taylor Grubbs
 */
-#include "laplace_SOR.h"
+#include "laplace_SOR_E.h"
 
 int main(int argc, char const *argv[])
 {
@@ -11,7 +11,7 @@ int main(int argc, char const *argv[])
      const char *fileName = argv[1];
      int rows = atoi(argv[2]);
      int columns = atoi(argv[3]);
-     
+
      //read in potential grid file
      double **myPotGrid = gridRead(fileName, rows, columns);
 
