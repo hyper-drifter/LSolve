@@ -115,7 +115,7 @@ void laplaceSolve(double ** initPotGrid, int rows, int columns)
      }
 
      FILE *electricGridFile = fopen("LSolve-E-Output.tsv", "w");
-     fprintf(electricGridFile, "%i\t%i\n", rows-2, columns-2); //adds size of electric field grid to tsv file
+     fprintf(electricGridFile, "%i\t%i\n", columns-2, rows-2);//Length and width added to file head
      for(i = 1; i < rows-1; i++){
        for(j = 1; j < columns-1; j++){
          fprintf(electricGridFile, "%i\t%i\t%lf\t%lf\n", j, i, eField[i][j][1], eField[i][j][2]);

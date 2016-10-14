@@ -105,7 +105,12 @@ void laplaceSolve(double ** initPotGrid, int rows, int columns)
      This part may be a little hard to follow. From the beginning, I chose to think of the potential grid as a matrix with i rows and j columns. Conventional matrix notation denotes an entry with the row first and column second --> (i,j). This is backwards from normal physics coordinate systems which denote column first and row second --> (x,y). And so to return the list of electric field vectors in my grid, I have seemingly 'reversed' the placing of i and j here in order to return the field vectors with coordinates in traditional (x,y)-style.
      */
      double eField[rows-2][columns-2][2];
-
+     for (i = 1; i < rows-1; i++) { //initializing to zero to see if that solves the nan problem
+          for(j = 1; j < columns; j++){
+               eField[i][j][1] = 0.;
+               eField[i][j][2] = 0.;
+         }
+      }
      for (i = 1; i < rows-1; i++) { //das loop
           for(j = 1; j < columns; j++){
                if(boundaryPoints[i][j] == 1){continue;}
@@ -115,6 +120,7 @@ void laplaceSolve(double ** initPotGrid, int rows, int columns)
      }
 
      FILE *electricGridFile = fopen("LSolve-E-Output.tsv", "w");
+     fprintf(electricGridFile, "%i\t%i\n", columns-2, rows-2);//prints length and width in head
      for(i = 1; i < rows-1; i++){
        for(j = 1; j < columns-1; j++){
          fprintf(electricGridFile, "%i\t%i\t%lf\t%lf\n", j, i, eField[i][j][1], eField[i][j][2]);
