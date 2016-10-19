@@ -7,8 +7,8 @@ local fields = {}
 
 function fields.getDimensions(filename)
       local inputFile = io.open(filename, "r")
-      length = inputFile:read("*number")
-      height = inputFile:read("*number")
+      local length = inputFile:read("*number")
+      local height = inputFile:read("*number")
       inputFile:close()
       return length, height
 end
@@ -16,14 +16,14 @@ end
 --reads electric field values from tsv file
 function fields.getElectricFieldArray(filename)
 
-      inputFile = io.open(filename, "r")
+      local inputFile = io.open(filename, "r")
 
       --reads length and width from file header
-      length = inputFile:read("*number")
-      height = inputFile:read("*number")
+      local length = inputFile:read("*number")
+      local height = inputFile:read("*number")
 
       --creates multidimensional-[x][y][2] array for storing field values
-      fieldGrid = {}
+      local fieldGrid = {}
       for i=1,length do
             fieldGrid[i] = {}
             for j=1,height do
@@ -41,6 +41,26 @@ function fields.getElectricFieldArray(filename)
 
       inputFile:close()
       return fieldGrid
+end
+
+
+--gets electric field magnitudes from electric field grid
+function fields.getElectricFieldMagnitudes(fieldGrid, length, height)
+
+     --makes 2-D grid for field magnitudes
+     local magGrid = {}
+     for i=1,length do
+           magGrid[i] = {}
+     end
+
+     --gets magnitudes
+     for x=1,length do
+          for y=1,height do
+               magGrid[x][y] = math.sqrt(math.pow(fieldGrid[x][y][1], 2) + math.pow(fieldGrid[x][y][2], 2))
+          end
+     end
+
+     return magGrid
 end
 
 return fields
