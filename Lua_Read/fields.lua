@@ -16,14 +16,14 @@ end
 --reads electric field values from tsv file
 function fields.getElectricFieldArray(filename)
 
-      inputFile = io.open(filename, "r")
+      local inputFile = io.open(filename, "r")
 
       --reads length and width from file header
-      length = inputFile:read("*number")
-      height = inputFile:read("*number")
+      local length = inputFile:read("*number")
+      local height = inputFile:read("*number")
 
       --creates multidimensional-[x][y][2] array for storing field values
-      fieldGrid = {}
+      local fieldGrid = {}
       for i=1,length do
             fieldGrid[i] = {}
             for j=1,height do
@@ -40,6 +40,23 @@ function fields.getElectricFieldArray(filename)
       end
 
       inputFile:close()
+      return fieldGrid
+end
+
+function fields.getPotentialFieldArray(filename, length, height)--need to input dimensions of array file
+
+      local inputFile = io.open(filename, "r")
+      local fieldGrid = {}
+      for i=1,length do
+            fieldGrid[i] = {}
+      end
+
+      for y=1,height do
+            for x=1,length do
+                  fieldGrid[x][y] = inputFile:read("*number")
+            end
+      end
+
       return fieldGrid
 end
 
