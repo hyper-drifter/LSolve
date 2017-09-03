@@ -13,8 +13,8 @@ int main(int argc, char const *argv[])
      int columns = atoi(argv[3]);
 
      //read in potential grid file
-     double **myPotGrid = gridRead(fileName, rows, columns);
-
+     long double **myPotGrid = gridRead(fileName, rows, columns);
+    
      printf("Grid file found\n");
 
      //solves Laplace's equation on original gridfile and stores in another 2-D array

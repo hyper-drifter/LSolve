@@ -1,0 +1,58 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python",
+            "type": "python",
+            "request": "launch",
+            "stopOnEntry": true,
+            "pythonPath": "python3",
+            "program": "/home/cameron/Desktop/LSolve/src_stepByStep/LSolve.py",
+            "cwd": "${workspaceRoot}",
+            "env": {},
+            "envFile": "${workspaceRoot}/.env",
+            "debugOptions": [
+                "WaitOnAbnormalExit",
+                "WaitOnNormalExit",
+                "RedirectOutput"
+            ]
+        },
+        {
+            "name": "Attach (Remote Debug)",
+            "type": "python",
+            "request": "attach",
+            "localRoot": "${workspaceRoot}",
+            "remoteRoot": "${workspaceRoot}",
+            "port": 3000,
+            "secret": "my_secret",
+            "host": "localhost"
+        },
+    { 
+        "name": "(gdb) Attach",
+        "type": "cppdbg",
+        "request": "attach",
+        "program": "/home/cameron/Desktop/LSolve/src_LinuxMac/laplace",
+        "processId": "${command:pickProcess}",
+        "MIMode": "gdb"
+    },
+        {
+            "name": "(gdb) Launch",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "/home/cameron/Desktop/LSolve/src_LinuxMac/laplace",
+            "args": ["/home/cameron/Desktop/LSolve/examples/quad.tsv", "200", "200"],
+            "stopAtEntry": false,
+            "cwd": "${workspaceRoot}",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        }
+    ]
+}

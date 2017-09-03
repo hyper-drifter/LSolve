@@ -1,0 +1,131 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      3944,        123]
+NotebookOptionsPosition[      3448,        102]
+NotebookOutlinePosition[      3791,        117]
+CellTagsIndexPosition[      3748,        114]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{
+  "SetDirectory", "[", 
+   "\"\</home/cameron/Desktop/LSolve/visualizationOutput\>\"", "]"}], 
+  ";"}]], "Input",
+ CellChangeTimes->{{3.713368071635331*^9, 3.713368087667555*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"vin", "=", 
+   RowBox[{
+   "Import", "[", 
+    "\"\</home/cameron/Desktop/LSolve/examples/quadrupole V2.tsv\>\"", 
+    "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.713377236456152*^9, 3.713377251714468*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"grids", "=", 
+   RowBox[{"Import", "/@", 
+    RowBox[{"ToString", "/@", 
+     RowBox[{
+      RowBox[{"Sort", "[", 
+       RowBox[{"FromDigits", "/@", 
+        RowBox[{"FileNames", "[", "]"}]}], "]"}], "\[LeftDoubleBracket]", 
+      RowBox[{";;", "400"}], "\[RightDoubleBracket]"}]}]}]}], ";"}]], "Input",\
+
+ CellChangeTimes->{{3.713368108581107*^9, 3.713368136812888*^9}, {
+  3.713369456084824*^9, 3.713369558854124*^9}, {3.713369675385778*^9, 
+  3.713369700599949*^9}, {3.7133697856580143`*^9, 3.713369786835346*^9}, {
+  3.713373734870417*^9, 3.713373754870379*^9}, {3.713374941691605*^9, 
+  3.713374941890973*^9}, {3.713375727185855*^9, 3.713375727600503*^9}},
+ NumberMarks->False],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"grids", "=", 
+   RowBox[{"Prepend", "[", 
+    RowBox[{"grids", ",", "vin"}], "]"}]}], ";"}]], "Input",
+ CellChangeTimes->{{3.713377257302429*^9, 3.713377312699382*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Parallelize", "[", 
+  RowBox[{
+   RowBox[{"frames", "=", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Image", "[", 
+       RowBox[{
+        RowBox[{"ListPlot3D", "[", 
+         RowBox[{"#", ",", 
+          RowBox[{"ImageSize", "\[Rule]", "Full"}], ",", 
+          RowBox[{"PlotRange", "\[Rule]", 
+           RowBox[{"{", 
+            RowBox[{"Full", ",", "Full", ",", 
+             RowBox[{"{", 
+              RowBox[{
+               RowBox[{"-", "500"}], ",", "500"}], "}"}]}], "}"}]}]}], "]"}], 
+        ",", 
+        RowBox[{"ImageResolution", "\[Rule]", "200"}]}], "]"}], "&"}], "/@", 
+     "grids"}]}], ";"}], "]"}]], "Input",
+ CellChangeTimes->{{3.713368379549975*^9, 3.713368405178075*^9}, {
+   3.713369948542897*^9, 3.7133699716852016`*^9}, {3.713373763622869*^9, 
+   3.713373775918934*^9}, {3.7133744207224693`*^9, 3.713374425148114*^9}, 
+   3.713374455907752*^9, {3.7133746924951353`*^9, 3.713374692647398*^9}, {
+   3.713374959491013*^9, 3.713374970411694*^9}, {3.713375762041069*^9, 
+   3.713375762593442*^9}, {3.713376904525167*^9, 3.713376907095006*^9}, {
+   3.713377448639574*^9, 3.713377450750255*^9}, {3.7133775273275423`*^9, 
+   3.713377527678776*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{"\"\<laplace.avi\>\"", ",", "frames"}], "]"}]], "Input",
+ CellChangeTimes->{{3.7133793962906313`*^9, 3.7133794338966913`*^9}}],
+
+Cell[BoxData["\<\"laplace.avi\"\>"], "Output",
+ CellChangeTimes->{3.713379480437911*^9}]
+}, Open  ]]
+},
+WindowSize->{959, 1019},
+WindowMargins->{{-838, Automatic}, {-33, Automatic}},
+FrontEndVersion->"11.0 for Linux x86 (64-bit) (September 21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 214, 6, 34, "Input"],
+Cell[775, 28, 245, 7, 34, "Input"],
+Cell[1023, 37, 718, 16, 34, "Input"],
+Cell[1744, 55, 203, 5, 34, "Input"],
+Cell[1950, 62, 1191, 27, 101, "Input"],
+Cell[CellGroupData[{
+Cell[3166, 93, 175, 3, 34, "Input"],
+Cell[3344, 98, 88, 1, 89, "Output"]
+}, Open  ]]
+}
+]
+*)
+
